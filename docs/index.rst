@@ -10,11 +10,11 @@ ElectrumXLTFN
 This project is a fork of `kyuupichan/electrumxltfn <https://github.com/kyuupichan/electrumxltfn>`_.
 The original author dropped support for Bitcoin, which we intend to keep.
 
-ElectrumXLTFN allows users to run their own Electrum server. It connects to your
+ElectrumXLTFN allows users to run their own ElectrumLtfn server. It connects to your
 full node and indexes the blockchain, allowing efficient querying of history of
 arbitrary addresses. The server can be exposed publicly, and joined to the public network
 of servers via peer discovery. As of May 2020, a significant chunk of the public
-Electrum server network runs ElectrumXLTFN.
+ElectrumLtfn server network runs ElectrumXLTFN.
 
 The current version is |release|.
 

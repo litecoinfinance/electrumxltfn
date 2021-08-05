@@ -1,4 +1,4 @@
-Electrum Protocol
+ElectrumLtfn Protocol
 =================
 
 This is intended to be a reference for client and server authors

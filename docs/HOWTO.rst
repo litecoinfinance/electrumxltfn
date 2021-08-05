@@ -414,7 +414,7 @@ The :file:`server.crt` file goes in :envvar:`SSL_CERTFILE` and
 :file:`server.key` in :envvar:`SSL_KEYFILE` in the server process's
 environment.
 
-Starting with Electrum 1.9, the client will learn and locally cache
+Starting with ElectrumLtfn 1.9, the client will learn and locally cache
 the SSL certificate for your server upon the first request to prevent
 man-in-the middle attacks for all further connections.
 

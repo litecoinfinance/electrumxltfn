@@ -149,8 +149,8 @@ Version 1.9.3 (05 Feb 2019)
 Version 1.9.2 (03 Feb 2019)
 ===========================
 
-* restore protocol version 1.2 and send a warning for old BTC Electrum clients that they
-  need to upgrade.  This is an attempt to protect users of old versions of Electrum from
+* restore protocol version 1.2 and send a warning for old BTC ElectrumLtfn clients that they
+  need to upgrade.  This is an attempt to protect users of old versions of ElectrumLtfn from
   the ongoing phishing attacks
 * increase default MAX_SEND for AuxPow Chains.  Truncate AuxPow for block heights covered
   by a checkpoint.  (jeremyrand)
@@ -181,7 +181,7 @@ Original author of ElectrumXLTFN:
 
 This fork maintained by:
 
-**Electrum developers** electrumdev@gmail.com  https://github.com/spesmilo
+**ElectrumLtfn developers** electrumdev@gmail.com  https://github.com/spesmilo
 
 
 .. _#554: https://github.com/kyuupichan/electrumxltfn/issues/554

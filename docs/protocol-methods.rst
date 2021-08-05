@@ -800,7 +800,7 @@ peers lists.  It should not be used by wallet clients.
 server.banner
 =============
 
-Return a banner to be shown in the Electrum console.
+Return a banner to be shown in the ElectrumLtfn console.
 
 **Signature**
 
@@ -814,7 +814,7 @@ Return a banner to be shown in the Electrum console.
 
   ::
 
-     "Welcome to Electrum!"
+     "Welcome to ElectrumLtfn!"
 
 
 server.donation_address
@@ -897,7 +897,7 @@ Return a list of features and services supported by the server.
   * *protocol_max*
   * *protocol_min*
 
-    Strings that are the minimum and maximum Electrum protocol
+    Strings that are the minimum and maximum ElectrumLtfn protocol
     versions this server speaks.  Example: "1.1".
 
   * *pruning*
@@ -1009,7 +1009,7 @@ Only the first :func:`server.version` message is accepted.
 
 **Example**::
 
-  server.version("Electrum 3.0.6", ["1.1", "1.2"])
+  server.version("ElectrumLtfn 3.0.6", ["1.1", "1.2"])
 
 **Example Result**::
 

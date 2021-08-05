@@ -937,7 +937,7 @@ class SessionBase(RPCSession):
 
 
 class ElectrumXLTFN(SessionBase):
-    '''A TCP server that handles incoming Electrum connections.'''
+    '''A TCP server that handles incoming ElectrumLtfn connections.'''
 
     PROTOCOL_MIN = (1, 4)
     PROTOCOL_MAX = (1, 4, 2)
@@ -1519,7 +1519,7 @@ class LocalRPC(SessionBase):
 
 
 class DashElectrumXLTFN(ElectrumXLTFN):
-    '''A TCP server that handles incoming Electrum Dash connections.'''
+    '''A TCP server that handles incoming ElectrumLtfn Dash connections.'''
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -1710,7 +1710,7 @@ class DashElectrumXLTFN(ElectrumXLTFN):
 
 
 class SmartCashElectrumXLTFN(DashElectrumXLTFN):
-    '''A TCP server that handles incoming Electrum-SMART connections.'''
+    '''A TCP server that handles incoming ElectrumLtfn-SMART connections.'''
 
     def set_request_handlers(self, ptuple):
         super().set_request_handlers(ptuple)

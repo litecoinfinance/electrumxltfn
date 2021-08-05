@@ -27,9 +27,9 @@ Started when the ElectrumXLTFN process starts.
 ElectrumXLTFN
 ---------
 
-Handles JSON Electrum client connections over TCP or SSL.  One
+Handles JSON ElectrumLtfn client connections over TCP or SSL.  One
 instance per client session.  Should be the only component concerned
-with the details of the Electrum wire protocol.
+with the details of the ElectrumLtfn wire protocol.
 
 Not started until the Block Processor has caught up with bitcoind.
 

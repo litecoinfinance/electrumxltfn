@@ -213,12 +213,12 @@ These environment variables are optional:
 
 .. envvar:: DONATION_ADDRESS
 
-  The server donation address reported to Electrum clients.  Defaults
-  to empty, which Electrum interprets as meaning there is none.
+  The server donation address reported to ElectrumLtfn clients.  Defaults
+  to empty, which ElectrumLtfn interprets as meaning there is none.
 
 .. envvar:: BANNER_FILE
 
-  The path to a banner file to serve to clients in Electrum's
+  The path to a banner file to serve to clients in ElectrumLtfn's
   "Console" tab.  Relative file paths must be relative to
   :envvar:`DB_DIRECTORY`.  The banner file is re-read for each new
   client.
@@ -320,10 +320,10 @@ raise them.
   The maximum size of a response message to send over the wire, in
   bytes.  Defaults to 1,000,000 (except for AuxPoW coins, which default
   to 10,000,000).  Values smaller than 350,000 are taken as 350,000
-  because standard Electrum protocol header "chunk" requests are almost
+  because standard ElectrumLtfn protocol header "chunk" requests are almost
   that large.
 
-  The Electrum protocol has a flaw in that address histories must be
+  The ElectrumLtfn protocol has a flaw in that address histories must be
   served all at once or not at all, an obvious avenue for abuse.
   :envvar:`MAX_SEND` is a stop-gap until the protocol is improved to
   admit incremental history requests.  Each history entry is

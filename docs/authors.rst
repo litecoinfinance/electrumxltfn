@@ -7,7 +7,7 @@ Authors
 
   Original creator, past maintainer.
 
-* Electrum developers
+* ElectrumLtfn developers
 
   Current maintainers.
 

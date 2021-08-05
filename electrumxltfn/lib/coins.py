@@ -651,7 +651,7 @@ class Bitcoin(BitcoinMixin, Coin):
         if client_ver < (3, 3, 3):
             return ('<br/><br/>'
                     'Your transaction was successfully broadcast.<br/><br/>'
-                    'However, you are using a VULNERABLE version of Electrum.<br/>'
+                    'However, you are using a VULNERABLE version of ElectrumLtfn.<br/>'
                     'Download the new version from the usual place:<br/>'
                     'https://electrum.org/'
                     '<br/><br/>')
@@ -910,7 +910,7 @@ class BitcoinTestnet(BitcoinTestnetMixin, Coin):
         if client_ver < (3, 3, 3):
             return ('<br/><br/>'
                     'Your transaction was successfully broadcast.<br/><br/>'
-                    'However, you are using a VULNERABLE version of Electrum.<br/>'
+                    'However, you are using a VULNERABLE version of ElectrumLtfn.<br/>'
                     'Download the new version from the usual place:<br/>'
                     'https://electrum.org/'
                     '<br/><br/>')

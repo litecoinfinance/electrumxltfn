@@ -31,7 +31,7 @@ In ElectrumXLTFN this is a per-coin property in `lib/coins.py
 server.peers.subscribe
 ----------------------
 
-:func:`server.peers.subscribe` is used by Electrum clients to get a
+:func:`server.peers.subscribe` is used by ElectrumLtfn clients to get a
 list of peer servers, in preference to a hard-coded list of peer
 servers in the client, which it will fall back to if necessary.
 
@@ -53,7 +53,7 @@ Maintaining the Peer Database
 
 In order to keep its peer database up-to-date and fresh, after some
 time has passed since the last successful connection to a peer, an
-Electrum server should make another attempt to connect, choosing
+ElectrumLtfn server should make another attempt to connect, choosing
 either the TCP or SSL port.
 
 On connecting it should issue :func:`server.peers.subscribe`,
@@ -98,7 +98,7 @@ server.features
 
 :func:`server.features` is a fairly new RPC call that a server can use
 to advertise what services and features it offers.  It is intended for
-use by Electrum clients as well as other peers.  Peers will use it to
+use by ElectrumLtfn clients as well as other peers.  Peers will use it to
 gather peer information from the peer itself.
 
 The call takes no arguments and returns a dictionary keyed by feature

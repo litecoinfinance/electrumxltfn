@@ -122,7 +122,7 @@ A typical result is as follows (with annotated comments)::
       "version": "ElectrumXLTFN 1.10.1"
   }
 
-Each ill-formed request, or one that does not follow the Electrum
+Each ill-formed request, or one that does not follow the ElectrumLtfn
 protocol, increments the error count of the session that sent it.
 
 :ref:`logging <session logging>` of sessions can be enabled by RPC.
@@ -184,7 +184,7 @@ too).
 peers
 -----
 
-Return a list of peer Electrum servers serving the same coin network.
+Return a list of peer ElectrumLtfn servers serving the same coin network.
 This command takes no arguments.
 
 Peer data is obtained via a peer discovery protocol documented
@@ -250,7 +250,7 @@ Return a list of all current sessions.  Takes no arguments::
   3      S6                1.1.2   1.4       0      16     0     0       0       3       0       3       0    05m40s    89.17.142.28:59241
 
 The columns show information by session: the session ID, flags (see below), how the client
-identifies itself - typically the Electrum client version, the protocol version
+identifies itself - typically the ElectrumLtfn client version, the protocol version
 negotiated, the session cost, the additional session cost accrued from its groups, the
 number of unprocessed requests, the number of transactions sent, the number of address
 subscriptions, the number of requests received and their total size, the number of

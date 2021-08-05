@@ -36,7 +36,7 @@ blockchain indexer:
 
 - aggressive caching and batching of DB writes
 - more compact and efficient representation of UTXOs, address index,
-  and history.  Electrum Server stores full transaction hash and
+  and history.  ElectrumLtfn Server stores full transaction hash and
   height for each UTXO, and does the same in its pruned history.  In
   contrast ElectrumXLTFN just stores the transaction number in the linear
   history of transactions.  ElectrumXLTFN can determine block

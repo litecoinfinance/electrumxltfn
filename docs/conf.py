@@ -21,7 +21,7 @@ VERSION="ElectrumXLTFN 1.16.0"
 
 project = 'ElectrumXLTFN'
 copyright = '2016-2020, various'
-author = 'Electrum developers'
+author = 'ElectrumLtfn developers'
 
 # The full version including branding
 release = VERSION
@@ -81,7 +81,7 @@ html_theme = 'alabaster'
 # documentation.
 #
 html_theme_options = {
-    'description': 'Lightweight Electrum Server in Python',
+    'description': 'Lightweight ElectrumLtfn Server in Python',
     'github_user': 'spesmilo',
     'github_repo': 'electrumxltfn',
     'github_button': True,

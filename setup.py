@@ -26,11 +26,11 @@ setuptools.setup(
     },
     packages=setuptools.find_packages(include=('electrumxltfn*',)),
     description='ElectrumXLTFN Server',
-    author='Electrum developers',
+    author='ElectrumLtfn developers',
     author_email='electrumdev@gmail.com',
     license='MIT Licence',
     url='https://github.com/litecoinfinance/electrumxltfn',
-    long_description='Server implementation for the Electrum protocol',
+    long_description='Server implementation for the ElectrumLtfn protocol',
     download_url=('https://github.com/litecoinfinance/electrumxltfn/archive/'
                   f'{version}.tar.gz'),
     classifiers=[
