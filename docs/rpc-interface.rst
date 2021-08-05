@@ -3,12 +3,12 @@ RPC Interface
 
 You can query the status of a running server, and affect its behaviour
 by sending **JSON RPC** commands to the LocalRPC port it is listening
-on.  This is best done using the :file:`electrumx_rpc` script
+on.  This is best done using the :file:`electrumxltfn_rpc` script
 provided.
 
 The general form of invocation is::
 
-  electrumx_rpc [-p PORT] <command> [arg1 [arg2...]]
+  electrumxltfn_rpc [-p PORT] <command> [arg1 [arg2...]]
 
 The port to send the commands to can be specified on the command line,
 otherwise the environment variable :envvar:`RPC_PORT` is used, and if
@@ -19,11 +19,11 @@ The following commands are available:
 add_peer
 --------
 
-Add a peer to the peers list.  ElectrumX will schedule an immediate
+Add a peer to the peers list.  ElectrumXLTFN will schedule an immediate
 connection attempt.  This command takes a single argument: the peer's
 "real name" as it used to advertise itself on IRC::
 
-  $ electrumx_rpc add_peer "ecdsa.net v1.0 s110 t"
+  $ electrumxltfn_rpc add_peer "ecdsa.net v1.0 s110 t"
   "peer 'ecdsa.net v1.0 s110 t' added"
 
 daemon_url
@@ -37,7 +37,7 @@ omitted, the default argument value is the process's existing
 This command replaces the daemon's URL at run-time, and also
 forcefully rotates to the first URL in the list.
 
-For example, in case ElectrumX has previously failed over to a
+For example, in case ElectrumXLTFN has previously failed over to a
 secondary daemon and you want to revert to the primary having resolved
 the connectivity issue, invoking this command without an argument will
 have that effect.
@@ -54,7 +54,7 @@ The special string :const:`all` disconnects all sessions.
 
 Example::
 
-  $ electrumx_rpc disconnect 209.59.102 34 2
+  $ electrumxltfn_rpc disconnect 209.59.102 34 2
   [
       "disconnecting session 34",
       "disconnecting group 209.59.102"
@@ -67,7 +67,7 @@ getinfo
 Return a summary of server state.  This command takes no arguments.
 A typical result is as follows (with annotated comments)::
 
-  $ electrumx_rpc getinfo
+  $ electrumxltfn_rpc getinfo
   {
       "coin": "Bitcoin",
       "daemon": "127.0.0.1:9334/",
@@ -119,7 +119,7 @@ A typical result is as follows (with annotated comments)::
       "tx hashes cache": "289 lookups 38 hits 213 entries",
       "txs sent": 19,                  # Transactions broadcast
       "uptime": "01h 39m 04s",
-      "version": "ElectrumX 1.10.1"
+      "version": "ElectrumXLTFN 1.10.1"
   }
 
 Each ill-formed request, or one that does not follow the Electrum
@@ -166,7 +166,7 @@ toggles logging of future sessions.
 
 Example::
 
-  $ electrumx_rpc log new 6 t0 z
+  $ electrumxltfn_rpc log new 6 t0 z
   [
     "logging new sessions",
     "logging session 6",
@@ -190,13 +190,13 @@ This command takes no arguments.
 Peer data is obtained via a peer discovery protocol documented
 :ref:`here <Peer Discovery>`::
 
-  $ electrumx_rpc peers
+  $ electrumxltfn_rpc peers
   Host                           Status   TCP   SSL Server             Min  Max  Pruning   Last Good    Last Try Tries               Source IP Address
-  bch.tedy.pw                    good   50001 50002 ElectrumX 1.2.1    0.9  1.2          07h 29m 23s 07h 30m 40s     0                 peer 185.215.224.26
-  shsmithgoggryfbx.onion         good   60001 60002 ElectrumX 1.2.1    0.9  1.2          07h 30m 34s 07h 30m 38s     0                 peer
-  bccarihace4jdcnt.onion         good   52001 52002 ElectrumX 1.2.1    0.9  1.2          07h 30m 34s 07h 30m 39s     0                 peer
+  bch.tedy.pw                    good   50001 50002 ElectrumXLTFN 1.2.1    0.9  1.2          07h 29m 23s 07h 30m 40s     0                 peer 185.215.224.26
+  shsmithgoggryfbx.onion         good   60001 60002 ElectrumXLTFN 1.2.1    0.9  1.2          07h 30m 34s 07h 30m 38s     0                 peer
+  bccarihace4jdcnt.onion         good   52001 52002 ElectrumXLTFN 1.2.1    0.9  1.2          07h 30m 34s 07h 30m 39s     0                 peer
   [...]
-  electroncash.checksum0.com     good   50001 50002 ElectrumX 1.2.1    0.9  1.1          07h 30m 40s 07h 30m 41s     0                 peer 149.56.198.233
+  electroncash.checksum0.com     good   50001 50002 ElectrumXLTFN 1.2.1    0.9  1.1          07h 30m 40s 07h 30m 41s     0                 peer 149.56.198.233
 
 .. _query:
 
@@ -211,7 +211,7 @@ order; UTXOs in an arbitrary order.
 
 For example::
 
-  $ electrumx_rpc query --limit 5 76a91462e907b15cbf27d5425399ebf6f0fb50ebb88f1888ac
+  $ electrumxltfn_rpc query --limit 5 76a91462e907b15cbf27d5425399ebf6f0fb50ebb88f1888ac
   Script: 76a91462e907b15cbf27d5425399ebf6f0fb50ebb88f1888ac
   History #1: height 123,723 tx_hash 3387418aaddb4927209c5032f515aa442a6587d6e54677f08a03b8fa7789e688
   History #2: height 127,280 tx_hash 4574958d135e66a53abf9c61950aba340e9e140be50efeea9456aa9f92bf40b5
@@ -233,7 +233,7 @@ This command takes an optional argument - the number of blocks to
 reorg - which defaults to 3.
 
 That number of blocks will be backed up - using undo information
-stored in ElectrumX's database - and then ElectrumX will move forwards
+stored in ElectrumXLTFN's database - and then ElectrumXLTFN will move forwards
 on the daemon's main chain to its current height.
 
 .. _sessions:

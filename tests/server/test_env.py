@@ -7,8 +7,8 @@ import re
 import pytest
 
 from aiorpcx import Service, NetAddress
-from electrumx.server.env import Env, ServiceError
-import electrumx.lib.coins as lib_coins
+from electrumxltfn.server.env import Env, ServiceError
+import electrumxltfn.lib.coins as lib_coins
 
 
 BASE_DAEMON_URL = 'http://username:password@hostname:321/'

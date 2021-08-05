@@ -21,10 +21,10 @@ all the others.  Manages resource usage.
 LocalRPC
 --------
 
-Handles local JSON RPC connections querying ElectrumX server state.
-Started when the ElectrumX process starts.
+Handles local JSON RPC connections querying ElectrumXLTFN server state.
+Started when the ElectrumXLTFN process starts.
 
-ElectrumX
+ElectrumXLTFN
 ---------
 
 Handles JSON Electrum client connections over TCP or SSL.  One

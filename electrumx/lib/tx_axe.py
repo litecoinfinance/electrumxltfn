@@ -1,5 +1,5 @@
 # Copyright (c) 2016-2018, Neil Booth
-# Copyright (c) 2018, the ElectrumX authors
+# Copyright (c) 2018, the ElectrumXLTFN authors
 #
 # All rights reserved.
 #
@@ -28,8 +28,8 @@
 
 from collections import namedtuple
 
-from electrumx.lib.tx import Deserializer
-from electrumx.lib.util import (pack_le_uint16, pack_le_int32, pack_le_uint32,
+from electrumxltfn.lib.tx import Deserializer
+from electrumxltfn.lib.util import (pack_le_uint16, pack_le_int32, pack_le_uint32,
                                 pack_le_int64, pack_varint, pack_varbytes,
                                 pack_be_uint16)
 

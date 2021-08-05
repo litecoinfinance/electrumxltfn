@@ -1,6 +1,6 @@
 import pytest
 
-import electrumx.lib.tx_axe as lib_tx_axe
+import electrumxltfn.lib.tx_axe as lib_tx_axe
 
 
 bfh = bytes.fromhex

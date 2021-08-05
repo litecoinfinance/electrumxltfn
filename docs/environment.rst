@@ -4,7 +4,7 @@
 Environment Variables
 =====================
 
-ElectrumX takes no command line arguments, instead its behaviour is controlled by
+ElectrumXLTFN takes no command line arguments, instead its behaviour is controlled by
 environment variables.  Only a few are required to be given, the rest will have sensible
 defaults if not specified.  Many of the defaults around resource usage are conservative; I
 encourage you to review them.
@@ -33,7 +33,7 @@ These environment variables are always required:
 .. envvar:: DAEMON_URL
 
   A comma-separated list of daemon URLs.  If more than one is provided
-  ElectrumX will initially connect to the first, and failover to
+  ElectrumXLTFN will initially connect to the first, and failover to
   subsequent ones round-robin style if one stops working.
 
   The generic form of a daemon URL is::
@@ -55,9 +55,9 @@ For the ``run`` script
 
 The following are required if you use the ``run`` script:
 
-.. envvar:: ELECTRUMX
+.. envvar:: ELECTRUMXLTFN
 
-  The path to the electrumx_server script.  Relative paths should
+  The path to the electrumxltfn_server script.  Relative paths should
   be relative to the directory of the ``run`` script.
 
 .. envvar:: USERNAME
@@ -104,17 +104,17 @@ Here are some examples of valid services::
   host.domain.tld:5151                  # Default protocol, hostname, port
   rpc://                                # RPC protocol, default host and port
 
-.. note:: ElectrumX will not serve any incoming connections until it has fully caught up
+.. note:: ElectrumXLTFN will not serve any incoming connections until it has fully caught up
           with your bitcoin daemon.  The only exception is local **RPC** connections,
           which are served at any time after the server has initialized.
 
 .. envvar:: SERVICES
 
-  A comma-separated list of services ElectrumX will accept incoming connections for.
+  A comma-separated list of services ElectrumXLTFN will accept incoming connections for.
 
   This environment variable determines what interfaces and ports the server listens on, so
   must be set correctly for any connection to the server to succeed.  If unset or empty,
-  ElectrumX will not listen for any incoming connections.
+  ElectrumXLTFN will not listen for any incoming connections.
 
   *protocol* can be any recognised protocol.
 
@@ -128,7 +128,7 @@ Here are some examples of valid services::
   libcap2-bin package::
 
     sudo apt-get update && sudo apt-get -y install libcap2-bin
-    sudo setcap cap_net_bind_service=+ep /path/to/electrumx_server
+    sudo setcap cap_net_bind_service=+ep /path/to/electrumxltfn_server
 
   If any listed service has protocol **ssl** or **wss** then :envvar:`SSL_CERTFILE` and
   :envvar:`SSL_KEYFILE` must be defined.
@@ -145,7 +145,7 @@ Here are some examples of valid services::
 
 .. envvar:: REPORT_SERVICES
 
-  A comma-separated list of services ElectrumX will advertize and other servers in the
+  A comma-separated list of services ElectrumXLTFN will advertize and other servers in the
   server network (if peer discovery is enabled), and any successful connection.
 
   This environment variable must be set correctly, taking account of your network,
@@ -197,7 +197,7 @@ These environment variables are optional:
 .. envvar:: ALLOW_ROOT
 
   Set this environment variable to anything non-empty to allow running
-  ElectrumX as root.
+  ElectrumXLTFN as root.
 
 .. envvar:: NET
 
@@ -226,10 +226,10 @@ These environment variables are optional:
   You can place several meta-variables in your banner file, which will be
   replaced before serving to a client.
 
-  + ``$SERVER_VERSION`` is replaced with the ElectrumX version you are
+  + ``$SERVER_VERSION`` is replaced with the ElectrumXLTFN version you are
     running, such as ``1.0.10``.
-  + ``$SERVER_SUBVERSION`` is replaced with the ElectrumX user agent
-    string.  For example, ``ElectrumX 1.0.10``.
+  + ``$SERVER_SUBVERSION`` is replaced with the ElectrumXLTFN user agent
+    string.  For example, ``ElectrumXLTFN 1.0.10``.
   + ``$DAEMON_VERSION`` is replaced with the daemon's version as a
     dot-separated string. For example ``0.12.1``.
   + ``$DAEMON_SUBVERSION`` is replaced with the daemon's user agent
@@ -237,7 +237,7 @@ These environment variables are optional:
   + ``$DONATION_ADDRESS`` is replaced with the address from the
     :envvar:`DONATION_ADDRESS` environment variable.
 
-  See `here <https://github.com/shsmith/electrumx-banner-updater>`_
+  See `here <https://github.com/shsmith/electrumxltfn-banner-updater>`_
   for a script that updates a banner file periodically with useful
   statistics about fees, last block time and height, etc.
 
@@ -262,7 +262,7 @@ These environment variables are optional:
 .. envvar:: REORG_LIMIT
 
   The maximum number of blocks to be able to handle in a chain
-  reorganisation.  ElectrumX retains some fairly compact undo
+  reorganisation.  ElectrumXLTFN retains some fairly compact undo
   information for this many blocks in levelDB.  The default is a
   function of :envvar:`COIN` and :envvar:`NET`; for Bitcoin mainnet it
   is 200.
@@ -296,7 +296,7 @@ Resource Usage Limits
 The following environment variables are all optional and help to limit
 server resource consumption and prevent simple DoS.
 
-Address subscriptions in ElectrumX are very cheap - they consume about
+Address subscriptions in ElectrumXLTFN are very cheap - they consume about
 160 bytes of memory each and are processed efficiently.  I feel the
 two subscription-related defaults below are low and encourage you to
 raise them.
@@ -370,7 +370,7 @@ raise them.
   decays over time.  Subscriptions have an ongoing servicing cost, so the decay is slower
   as the number of subscriptions increases.
 
-  If a session disconnects, ElectrumX continues to associate its cost with its IP address,
+  If a session disconnects, ElectrumXLTFN continues to associate its cost with its IP address,
   so if it immediately reconnects it will re-acquire its previous cost allocation.
   Moreover, sessions are also grouped together based on their IP address subnets, and cost
   is accrued for the whole group. What subnet sizes to use can be configured via
@@ -410,18 +410,18 @@ raise them.
 Peer Discovery
 ==============
 
-In response to the :func:`server.peers.subscribe` RPC call, ElectrumX
+In response to the :func:`server.peers.subscribe` RPC call, ElectrumXLTFN
 will only return peer servers that it has recently connected to and
 verified basic functionality.
 
-If you are not running a Tor proxy ElectrumX will be unable to connect
+If you are not running a Tor proxy ElectrumXLTFN will be unable to connect
 to onion server peers, in which case rather than returning no onion
 peers it will fall back to a hard-coded list.
 
 To give incoming clients a full range of onion servers you will need
-to be running a Tor proxy for ElectrumX to use.
+to be running a Tor proxy for ElectrumXLTFN to use.
 
-ElectrumX will perform peer-discovery by default and announce itself
+ElectrumXLTFN will perform peer-discovery by default and announce itself
 to other peers.  If your server is private you may wish to disable
 some of this.
 
@@ -430,7 +430,7 @@ some of this.
   This environment variable is case-insensitive and defaults to
   ``on``.
 
-  If ``on``, ElectrumX will occasionally connect to and verify its
+  If ``on``, ElectrumXLTFN will occasionally connect to and verify its
   network of peer servers.
 
   If ``off``, peer discovery is disabled and a hard-coded default list
@@ -441,11 +441,11 @@ some of this.
 .. envvar:: PEER_ANNOUNCE
 
   Set this environment variable to empty to disable announcing itself.
-  If not defined, or non-empty, ElectrumX will announce itself to
+  If not defined, or non-empty, ElectrumXLTFN will announce itself to
   peers.
 
   If peer discovery is disabled this environment variable has no
-  effect, because ElectrumX only announces itself to peers when doing
+  effect, because ElectrumXLTFN only announces itself to peers when doing
   peer discovery if it notices it is not present in the peer's
   returned list.
 
@@ -466,7 +466,7 @@ some of this.
 
 .. envvar:: TOR_PROXY_PORT
 
-  The port on which the Tor proxy is running.  If not set, ElectrumX
+  The port on which the Tor proxy is running.  If not set, ElectrumXLTFN
   will autodetect any proxy running on the usual ports 9050 (Tor),
   9150 (Tor browser bundle) and 1080 (socks).
 
@@ -504,5 +504,5 @@ your available physical RAM:
 
   I do not recommend raising this above 2000.
 
-.. _lib/coins.py: https://github.com/spesmilo/electrumx/blob/master/electrumx/lib/coins.py
+.. _lib/coins.py: https://github.com/spesmilo/electrumxltfn/blob/master/electrumxltfn/lib/coins.py
 .. _uvloop: https://pypi.python.org/pypi/uvloop

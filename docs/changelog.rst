@@ -6,13 +6,13 @@
 Version 1.16.0 (10 Dec 2020)
 ============================
 
-Note: this is the first release since forking from kyuupichan/electrumx.
-kyuupichan has the :code:`electrumx` name on PyPI, so we needed a new name there.
+Note: this is the first release since forking from kyuupichan/electrumxltfn.
+kyuupichan has the :code:`electrumxltfn` name on PyPI, so we needed a new name there.
 We are using the `e-x <https://pypi.org/project/e-x/>`_ name on PyPI, so you can
 install this package via e.g. :code:`pip install e-x`.
 
 * security: a vulnerability has been fixed that allowed a remote attacker to
-  crash electrumx if peer discovery was enabled (`#22`_)
+  crash electrumxltfn if peer discovery was enabled (`#22`_)
 * fixed some peer-discovery-related bugs (e.g. `#35`_)
 * ENV: when using Bitcoin, the COIN ENV var can now be set to :code:`Bitcoin`.
   For compatibility, using :code:`BitcoinSegwit` will also keep working.
@@ -88,7 +88,7 @@ Version 1.11.0 (18 Apr 2019)
 * require aiorpcX 0.15.x
 * require aiohttp 3.3 or higher; earlier versions had a problematic bug
 * add :envvar:`REQUEST_TIMEOUT` and :envvar:`LOG_LEVEL` environment variables
-* mark 4 old environment variables obsolete.  ElectrumX won't start until they are removed
+* mark 4 old environment variables obsolete.  ElectrumXLTFN won't start until they are removed
 * getinfo local RPC cleaned up and shows more stats
 * miscellaneous fixes and improvements
 * more efficient handling of some RPC methods, particularly
@@ -109,7 +109,7 @@ Version 1.10.1 (13 Apr 2019)
 * Windows support (sancoder)
 * peers improvements (ghost43)
 * report mempool and block sizes in logs
-* electrumx_rpc: timeout raised to 30s, fix session request counts
+* electrumxltfn_rpc: timeout raised to 30s, fix session request counts
 * other tweaks and improvements by Bjorge Dijkstra, ghost43, peleion,
 * coin additions / updates: ECA (Jenova7), ECCoin (smogm), GXX (DEVCØN), BZX (2INFINITY),
   DeepOnion (Liam Alford), CivX / EXOS (turcol)
@@ -175,7 +175,7 @@ Version 1.9.0 (10 Jan 2019)
 * other minor tweaks (Michael Schmoock, Michael Taborsky)
 
 
-Original author of ElectrumX:
+Original author of ElectrumXLTFN:
 
 **Neil Booth**  kyuupichan@gmail.com  https://github.com/kyuupichan
 
@@ -184,27 +184,27 @@ This fork maintained by:
 **Electrum developers** electrumdev@gmail.com  https://github.com/spesmilo
 
 
-.. _#554: https://github.com/kyuupichan/electrumx/issues/554
-.. _#566: https://github.com/kyuupichan/electrumx/issues/566
-.. _#653: https://github.com/kyuupichan/electrumx/issues/653
-.. _#655: https://github.com/kyuupichan/electrumx/issues/655
-.. _#660: https://github.com/kyuupichan/electrumx/issues/660
-.. _#684: https://github.com/kyuupichan/electrumx/issues/684
-.. _#713: https://github.com/kyuupichan/electrumx/issues/713
-.. _#727: https://github.com/kyuupichan/electrumx/issues/727
-.. _#731: https://github.com/kyuupichan/electrumx/issues/731
-.. _#795: https://github.com/kyuupichan/electrumx/issues/795
-.. _#909: https://github.com/kyuupichan/electrumx/issues/909
+.. _#554: https://github.com/kyuupichan/electrumxltfn/issues/554
+.. _#566: https://github.com/kyuupichan/electrumxltfn/issues/566
+.. _#653: https://github.com/kyuupichan/electrumxltfn/issues/653
+.. _#655: https://github.com/kyuupichan/electrumxltfn/issues/655
+.. _#660: https://github.com/kyuupichan/electrumxltfn/issues/660
+.. _#684: https://github.com/kyuupichan/electrumxltfn/issues/684
+.. _#713: https://github.com/kyuupichan/electrumxltfn/issues/713
+.. _#727: https://github.com/kyuupichan/electrumxltfn/issues/727
+.. _#731: https://github.com/kyuupichan/electrumxltfn/issues/731
+.. _#795: https://github.com/kyuupichan/electrumxltfn/issues/795
+.. _#909: https://github.com/kyuupichan/electrumxltfn/issues/909
 
 
-.. _#5:   https://github.com/spesmilo/electrumx/pull/5
-.. _#11:  https://github.com/spesmilo/electrumx/pull/11
-.. _#22:  https://github.com/spesmilo/electrumx/issues/22
-.. _#24:  https://github.com/spesmilo/electrumx/pull/24
-.. _#35:  https://github.com/spesmilo/electrumx/pull/35
-.. _#67:  https://github.com/spesmilo/electrumx/pull/67
-.. _#70:  https://github.com/spesmilo/electrumx/pull/70
+.. _#5:   https://github.com/spesmilo/electrumxltfn/pull/5
+.. _#11:  https://github.com/spesmilo/electrumxltfn/pull/11
+.. _#22:  https://github.com/spesmilo/electrumxltfn/issues/22
+.. _#24:  https://github.com/spesmilo/electrumxltfn/pull/24
+.. _#35:  https://github.com/spesmilo/electrumxltfn/pull/35
+.. _#67:  https://github.com/spesmilo/electrumxltfn/pull/67
+.. _#70:  https://github.com/spesmilo/electrumxltfn/pull/70
 
 
-.. _4b3f6510:  https://github.com/spesmilo/electrumx/commit/4b3f6510e94670a013c1abe6247cdd2b0e7e6f8c
-.. _a61136c5:  https://github.com/spesmilo/electrumx/commit/a61136c596d6a0290a6be9d21fb7c095c3cea21e
+.. _4b3f6510:  https://github.com/spesmilo/electrumxltfn/commit/4b3f6510e94670a013c1abe6247cdd2b0e7e6f8c
+.. _a61136c5:  https://github.com/spesmilo/electrumxltfn/commit/a61136c596d6a0290a6be9d21fb7c095c3cea21e

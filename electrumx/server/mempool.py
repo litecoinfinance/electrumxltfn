@@ -18,12 +18,12 @@ import math
 import attr
 from aiorpcx import TaskGroup, run_in_thread, sleep
 
-from electrumx.lib.hash import hash_to_hex_str, hex_str_to_hash
-from electrumx.lib.util import class_logger, chunks
-from electrumx.server.db import UTXO
+from electrumxltfn.lib.hash import hash_to_hex_str, hex_str_to_hash
+from electrumxltfn.lib.util import class_logger, chunks
+from electrumxltfn.server.db import UTXO
 
 if TYPE_CHECKING:
-    from electrumx.lib.coins import Coin
+    from electrumxltfn.lib.coins import Coin
 
 
 @attr.s(slots=True)

@@ -380,5 +380,5 @@ Identify the client to the server and negotiate the protocol version.
 
 **Example Results**::
 
-  ["ElectrumX 1.2.1", "1.2"]
-  "ElectrumX 1.2.1"
+  ["ElectrumXLTFN 1.2.1", "1.2"]
+  "ElectrumXLTFN 1.2.1"

@@ -28,21 +28,21 @@ from aiorpcx import (Event, JSONRPCAutoDetect, JSONRPCConnection,
                      TaskGroup, handler_invocation, serve_rs, serve_ws, sleep,
                      NewlineFramer)
 
-import electrumx
-import electrumx.lib.util as util
-from electrumx.lib.hash import (HASHX_LEN, Base58Error, hash_to_hex_str,
+import electrumxltfn
+import electrumxltfn.lib.util as util
+from electrumxltfn.lib.hash import (HASHX_LEN, Base58Error, hash_to_hex_str,
                                 hex_str_to_hash, sha256)
-from electrumx.lib.merkle import MerkleCache
-from electrumx.lib.text import sessions_lines
-from electrumx.server.daemon import DaemonError
-from electrumx.server.peers import PeerManager
+from electrumxltfn.lib.merkle import MerkleCache
+from electrumxltfn.lib.text import sessions_lines
+from electrumxltfn.server.daemon import DaemonError
+from electrumxltfn.server.peers import PeerManager
 
 if TYPE_CHECKING:
-    from electrumx.server.db import DB
-    from electrumx.server.env import Env
-    from electrumx.server.block_processor import BlockProcessor
-    from electrumx.server.daemon import Daemon
-    from electrumx.server.mempool import MemPool
+    from electrumxltfn.server.db import DB
+    from electrumxltfn.server.env import Env
+    from electrumxltfn.server.block_processor import BlockProcessor
+    from electrumxltfn.server.daemon import Daemon
+    from electrumxltfn.server.mempool import MemPool
 
 
 BAD_REQUEST = 1
@@ -160,7 +160,7 @@ class SessionManager:
         self.hsub_results = None
         self._task_group = TaskGroup()
         self._sslc = None
-        # Event triggered when electrumx is listening for incoming requests.
+        # Event triggered when electrumxltfn is listening for incoming requests.
         self.server_listening = Event()
         self.session_event = Event()
 
@@ -338,7 +338,7 @@ class SessionManager:
                 self._tx_hashes_lookups, self._tx_hashes_hits, len(self._tx_hashes_cache)),
             'txs sent': self.txs_sent,
             'uptime': util.formatted_time(time.time() - self.start_time),
-            'version': electrumx.version,
+            'version': electrumxltfn.version,
         }
 
     def _session_data(self, for_log):
@@ -427,7 +427,7 @@ class SessionManager:
     async def rpc_add_peer(self, real_name):
         '''Add a peer.
 
-        real_name: "bch.electrumx.cash t50001 s50002" for example
+        real_name: "bch.electrumxltfn.cash t50001 s50002" for example
         '''
         await self.peer_mgr.add_localRPC_peer(real_name)
         return f"peer '{real_name}' added"
@@ -832,7 +832,7 @@ class SessionManager:
 
 
 class SessionBase(RPCSession):
-    '''Base class of ElectrumX JSON sessions.
+    '''Base class of ElectrumXLTFN JSON sessions.
 
     Each session runs its tasks in asynchronous parallelism with other
     sessions.
@@ -915,7 +915,7 @@ class SessionBase(RPCSession):
         return 0
 
     async def handle_request(self, request):
-        '''Handle an incoming request.  ElectrumX doesn't receive
+        '''Handle an incoming request.  ElectrumXLTFN doesn't receive
         notifications from client sessions.
         '''
         if isinstance(request, Request):
@@ -936,7 +936,7 @@ class SessionBase(RPCSession):
         return await coro
 
 
-class ElectrumX(SessionBase):
+class ElectrumXLTFN(SessionBase):
     '''A TCP server that handles incoming Electrum connections.'''
 
     PROTOCOL_MIN = (1, 4)
@@ -971,7 +971,7 @@ class ElectrumX(SessionBase):
         return {
             'hosts': hosts_dict,
             'pruning': None,
-            'server_version': electrumx.version,
+            'server_version': electrumxltfn.version,
             'protocol_min': min_str,
             'protocol_max': max_str,
             'genesis_hash': env.coin.GENESIS_HASH,
@@ -986,7 +986,7 @@ class ElectrumX(SessionBase):
     @classmethod
     def server_version_args(cls):
         '''The arguments to a server.version RPC call to a peer.'''
-        return [electrumx.version, cls.protocol_min_max_strings()]
+        return [electrumxltfn.version, cls.protocol_min_max_strings()]
 
     def protocol_version_string(self):
         return util.version_string(self.protocol_tuple)
@@ -1250,8 +1250,8 @@ class ElectrumX(SessionBase):
         revision //= 100
         daemon_version = f'{major:d}.{minor:d}.{revision:d}'
         for pair in [
-                ('$SERVER_VERSION', electrumx.version_short),
-                ('$SERVER_SUBVERSION', electrumx.version),
+                ('$SERVER_VERSION', electrumxltfn.version_short),
+                ('$SERVER_SUBVERSION', electrumxltfn.version),
                 ('$DAEMON_VERSION', daemon_version),
                 ('$DAEMON_SUBVERSION', network_info['subversion']),
                 ('$DONATION_ADDRESS', self.env.donation_address),
@@ -1266,7 +1266,7 @@ class ElectrumX(SessionBase):
 
     async def banner(self):
         '''Return the server banner text.'''
-        banner = f'You are connected to an {electrumx.version} server.'
+        banner = f'You are connected to an {electrumxltfn.version} server.'
         self.bump_cost(0.5)
 
         if self.is_tor():
@@ -1374,7 +1374,7 @@ class ElectrumX(SessionBase):
                 BAD_REQUEST, f'unsupported protocol version: {protocol_version}'))
         self.set_request_handlers(ptuple)
 
-        return electrumx.version, self.protocol_version_string()
+        return electrumxltfn.version, self.protocol_version_string()
 
     async def crash_old_client(self, ptuple, crash_client_ver):
         if crash_client_ver:
@@ -1518,7 +1518,7 @@ class LocalRPC(SessionBase):
         return 'RPC'
 
 
-class DashElectrumX(ElectrumX):
+class DashElectrumXLTFN(ElectrumXLTFN):
     '''A TCP server that handles incoming Electrum Dash connections.'''
 
     def __init__(self, *args, **kwargs):
@@ -1709,7 +1709,7 @@ class DashElectrumX(ElectrumX):
         return res
 
 
-class SmartCashElectrumX(DashElectrumX):
+class SmartCashElectrumXLTFN(DashElectrumXLTFN):
     '''A TCP server that handles incoming Electrum-SMART connections.'''
 
     def set_request_handlers(self, ptuple):
@@ -1738,7 +1738,7 @@ class SmartCashElectrumX(DashElectrumX):
         return None
 
 
-class AuxPoWElectrumX(ElectrumX):
+class AuxPoWElectrumXLTFN(ElectrumXLTFN):
     async def block_header(self, height, cp_height=0):
         result = await super().block_header(height, cp_height)
 

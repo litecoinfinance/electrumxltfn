@@ -11,23 +11,23 @@ Prepare::
 
   python3.7 -m pip install aiohttp pylru plyvel Cython uvloop quark_hash
 
-  git clone https://github.com/litecoinfinance/electrumx /opt/electrumx
+  git clone https://github.com/litecoinfinance/electrumxltfn /opt/electrumxltfn
 
-  cd /opt/electrumx
+  cd /opt/electrumxltfn
 
   mkdir -p db
 
-  groupadd -r electrumx
+  groupadd -r electrumxltfn
 
-  useradd -r -m -d /var/lib/electrumx -k /dev/null -s /bin/false -g electrumx electrumx
+  useradd -r -m -d /var/lib/electrumxltfn -k /dev/null -s /bin/false -g electrumxltfn electrumxltfn
 
-  chown electrumx:electrumx /opt/electrumx/db
+  chown electrumxltfn:electrumxltfn /opt/electrumxltfn/db
 
-  cp contrib/systemd/electrumx.service /etc/systemd/system/
+  cp contrib/systemd/electrumxltfn.service /etc/systemd/system/
 
-  ln -sf /opt/electrumx/electrumx_server.py /usr/local/bin/electrumx_server.py
+  ln -sf /opt/electrumxltfn/electrumxltfn_server.py /usr/local/bin/electrumxltfn_server.py
 
-  ln -sf /opt/electrumx/electrumx.conf /etc/electrumx.conf
+  ln -sf /opt/electrumxltfn/electrumxltfn.conf /etc/electrumxltfn.conf
 
 Create SSL certificat::
 
@@ -41,18 +41,18 @@ Create SSL certificat::
 
 Give access to ssl folser and cert::
 
-  chown -R electrumx:electrumx /opt/electrumx/ssl
+  chown -R electrumxltfn:electrumxltfn /opt/electrumxltfn/ssl
 
   cd ..
 
 Create and edit config::
 
-  nano /opt/electrumx/electrumx.conf
+  nano /opt/electrumxltfn/electrumxltfn.conf
 
 Config Example::
 
   COIN = LitecoinFinance
-  DB_DIRECTORY = /opt/electrumx/db
+  DB_DIRECTORY = /opt/electrumxltfn/db
   DAEMON_URL = http://RPCUSER:RPCPASSWORD@IP:RPCPORT/
   SERVICES = tcp://:30001,rpc://:8001,ssl://:30002
   EVENT_LOOP_POLICY = uvloop
@@ -61,13 +61,13 @@ Config Example::
   COST_SOFT_LIMIT = 10000
   COST_HARD_LIMIT = 100000
   BANDWIDTH_UNIT_COST = 10000
-  SSL_CERTFILE = /opt/electrumx/ssl/server.crt
-  SSL_KEYFILE = /opt/electrumx/ssl/server.key
+  SSL_CERTFILE = /opt/electrumxltfn/ssl/server.crt
+  SSL_KEYFILE = /opt/electrumxltfn/ssl/server.key
 
 Give access to config::
 
-  chown root:electrumx /opt/electrumx/electrumx.conf
-  chmod 640 /opt/electrumx/electrumx.conf
+  chown root:electrumxltfn /opt/electrumxltfn/electrumxltfn.conf
+  chmod 640 /opt/electrumxltfn/electrumxltfn.conf
 
 Install server::
 
@@ -76,16 +76,16 @@ Install server::
 
 Start::
 
-  systemctl start electrumx
+  systemctl start electrumxltfn
 
 Stop::
 
-  systemctl stop electrumx
+  systemctl stop electrumxltfn
 
 Autorun::
 
-  systemctl enable electrumx
+  systemctl enable electrumxltfn
 
 Logs::
 
-  journalctl -u electrumx -f
+  journalctl -u electrumxltfn -f

@@ -66,7 +66,7 @@ class CompactFormatter(logging.Formatter):
 
 
 def make_logger(name, *, handler, level):
-    '''Return the root ElectrumX logger.'''
+    '''Return the root ElectrumXLTFN logger.'''
     logger = logging.getLogger(name)
     logger.addHandler(handler)
     logger.setLevel(level)

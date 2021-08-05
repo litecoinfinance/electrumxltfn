@@ -11,9 +11,9 @@ from binascii import unhexlify
 
 import pytest
 
-from electrumx.lib.coins import Coin, Namecoin
-from electrumx.lib.hash import hash_to_hex_str
-from electrumx.lib.script import OpCodes, Script
+from electrumxltfn.lib.coins import Coin, Namecoin
+from electrumxltfn.lib.hash import hash_to_hex_str
+from electrumxltfn.lib.script import OpCodes, Script
 
 TRANSACTION_DIR = os.path.join(
     os.path.dirname(os.path.realpath(__file__)), 'transactions')

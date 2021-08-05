@@ -13,8 +13,8 @@ from ipaddress import IPv4Address, IPv6Address
 from typing import Type
 
 from aiorpcx import Service, ServicePart
-from electrumx.lib.coins import Coin
-from electrumx.lib.env_base import EnvBase
+from electrumxltfn.lib.coins import Coin
+from electrumxltfn.lib.env_base import EnvBase
 
 
 class ServiceError(Exception):
@@ -23,7 +23,7 @@ class ServiceError(Exception):
 
 class Env(EnvBase):
     '''Wraps environment configuration. Optionally, accepts a Coin class
-       as first argument to have ElectrumX serve custom coins not part of
+       as first argument to have ElectrumXLTFN serve custom coins not part of
        the standard distribution.
     '''
 
@@ -110,7 +110,7 @@ class Env(EnvBase):
         try:
             import resource
             nofile_limit = resource.getrlimit(resource.RLIMIT_NOFILE)[0]
-            # We give the DB 250 files; allow ElectrumX 100 for itself
+            # We give the DB 250 files; allow ElectrumXLTFN 100 for itself
             value = max(0, min(env_value, nofile_limit - 350))
             if value < env_value:
                 self.logger.warning(

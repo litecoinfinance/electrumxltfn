@@ -39,8 +39,8 @@ install:
   - pip install kawpow
 # command to run tests
 script:
-  - pytest --cov=electrumx
-  - pycodestyle --max-line-length=100 electrumx/server/*.py electrumx/lib/*.py *.py
+  - pytest --cov=electrumxltfn
+  - pycodestyle --max-line-length=100 electrumxltfn/server/*.py electrumxltfn/lib/*.py *.py
   - sh -c "cd docs && make html"
 # Dont report coverage from nightly
 after_success:

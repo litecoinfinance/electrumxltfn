@@ -3,8 +3,8 @@
 Peer Discovery
 ==============
 
-This was implemented in ElectrumX as of version 0.11.0.  Support for
-IRC peer discovery was removed in ElectrumX version 1.2.1.
+This was implemented in ElectrumXLTFN as of version 0.11.0.  Support for
+IRC peer discovery was removed in ElectrumXLTFN version 1.2.1.
 
 The :dfn:`peer database` is an in-memory store of peers with at least
 the following information about a peer, required for a response to the
@@ -24,8 +24,8 @@ A list of hard-coded, well-known peers seeds the peer discovery
 process.  Ideally it should have at least 4 servers that have shown
 commitment to reliable service.
 
-In ElectrumX this is a per-coin property in `lib/coins.py
-<https://github.com/spesmilo/electrumx/blob/master/electrumx/lib/coins.py>`_.
+In ElectrumXLTFN this is a per-coin property in `lib/coins.py
+<https://github.com/spesmilo/electrumxltfn/blob/master/electrumxltfn/lib/coins.py>`_.
 
 
 server.peers.subscribe
@@ -43,7 +43,7 @@ to recently.  Only reporting recent good peers ensures that those that
 have gone offline will be forgotten quickly and not be passed around
 for long.
 
-In ElectrumX, "recently" is taken to be the last 24 hours.  Only one
+In ElectrumXLTFN, "recently" is taken to be the last 24 hours.  Only one
 peer from each IPv4/16 netmask is returned, and the number of onion
 peers is limited.
 
@@ -84,12 +84,12 @@ connection attempt, the peer entry should be removed from the
 database.  This ensures that all peers that have gone offline will
 eventually be forgotten by the network entirely.
 
-ElectrumX will connect to the SSL port if both ports are available.
+ElectrumXLTFN will connect to the SSL port if both ports are available.
 If that fails it will fall back to the TCP port.  It tries to
 reconnect to a good peer at least once every 24 hours, and a failing
 after 5 minutes but with exponential backoff.  It forgets a peer
 entirely if a few days have passed since a successful connection.
-ElectrumX attempts to connect to onion peers through a Tor proxy that
+ElectrumXLTFN attempts to connect to onion peers through a Tor proxy that
 can be configured or that it will try to autodetect.
 
 

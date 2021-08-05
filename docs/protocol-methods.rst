@@ -916,7 +916,7 @@ Return a list of features and services supported by the server.
       "protocol_max": "1.0",
       "protocol_min": "1.0",
       "pruning": null,
-      "server_version": "ElectrumX 1.0.17",
+      "server_version": "ElectrumXLTFN 1.0.17",
       "hash_function": "sha256"
   }
 
@@ -1013,7 +1013,7 @@ Only the first :func:`server.version` message is accepted.
 
 **Example Result**::
 
-  ["ElectrumX 1.2.1", "1.2"]
+  ["ElectrumXLTFN 1.2.1", "1.2"]
 
 
 Masternode methods (Dash and compatible coins)

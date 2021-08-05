@@ -20,10 +20,10 @@ from typing import TYPE_CHECKING
 
 from aiorpcx import spawn
 
-from electrumx.lib.util import class_logger
+from electrumxltfn.lib.util import class_logger
 
 if TYPE_CHECKING:
-    from electrumx.server.env import Env
+    from electrumxltfn.server.env import Env
 
 
 class ServerBase:

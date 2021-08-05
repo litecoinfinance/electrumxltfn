@@ -10,7 +10,7 @@
 
 from os import environ
 
-from electrumx.lib.util import class_logger
+from electrumxltfn.lib.util import class_logger
 
 
 class EnvBase:

@@ -1,7 +1,7 @@
 import os
 import pytest
 
-from electrumx.lib.merkle import Merkle, MerkleCache
+from electrumxltfn.lib.merkle import Merkle, MerkleCache
 
 
 merkle = Merkle()

@@ -17,7 +17,7 @@ is encouraged for version 1.0 but not required.
   setting the `jsonrpc
   <http://www.jsonrpc.org/specification#request_object>`_ member of
   its messages to ``"2.0"`` if it supports the version 2.0 protocol in
-  its entirety.  ElectrumX does and will expect clients advertizing so
+  its entirety.  ElectrumXLTFN does and will expect clients advertizing so
   to function correctly.  Those that do not will be disconnected and
   possibly blacklisted.
 
@@ -201,5 +201,5 @@ and confirm the returned roots match.
 
 .. note:: with 500,000 headers of 80 bytes each, a naïve server
   implementation would require hashing approximately 88MB of data to
-  provide a single merkle proof.  ElectrumX implements an optimization
+  provide a single merkle proof.  ElectrumXLTFN implements an optimization
   such that it hashes only approximately 180KB of data per proof.

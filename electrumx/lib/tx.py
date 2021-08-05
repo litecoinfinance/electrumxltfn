@@ -1,5 +1,5 @@
 # Copyright (c) 2016-2017, Neil Booth
-# Copyright (c) 2017, the ElectrumX authors
+# Copyright (c) 2017, the ElectrumXLTFN authors
 #
 # All rights reserved.
 #
@@ -31,9 +31,9 @@ from dataclasses import dataclass
 from hashlib import blake2s
 from typing import Sequence
 
-from electrumx.lib.hash import sha256, double_sha256, hash_to_hex_str
-from electrumx.lib.script import OpCodes
-from electrumx.lib.util import (
+from electrumxltfn.lib.hash import sha256, double_sha256, hash_to_hex_str
+from electrumxltfn.lib.script import OpCodes
+from electrumxltfn.lib.util import (
     unpack_le_int32_from, unpack_le_int64_from, unpack_le_uint16_from,
     unpack_be_uint16_from,
     unpack_le_uint32_from, unpack_le_uint64_from, pack_le_int32, pack_varint,

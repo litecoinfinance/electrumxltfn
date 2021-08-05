@@ -2,8 +2,8 @@
 
 import pytest
 
-from electrumx.lib.coins import NameMixin
-from electrumx.lib.script import OpCodes, Script
+from electrumxltfn.lib.coins import NameMixin
+from electrumxltfn.lib.script import OpCodes, Script
 
 
 NAME = "name".encode("ascii")

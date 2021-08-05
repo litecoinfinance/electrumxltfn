@@ -7,7 +7,7 @@ HOWTO
 Prerequisites
 =============
 
-**ElectrumX** should run on any flavour of unix.  I have run it
+**ElectrumXLTFN** should run on any flavour of unix.  I have run it
 successfully on MacOS and DragonFlyBSD.  It won't run out-of-the-box
 on Windows, but the changes required to make it do so should be
 small - pull requests are welcome.
@@ -15,7 +15,7 @@ small - pull requests are welcome.
 ================ ========================
 Package          Notes
 ================ ========================
-Python3          ElectrumX uses asyncio.  Python version >= 3.7 is
+Python3          ElectrumXLTFN uses asyncio.  Python version >= 3.7 is
                  **required**.
 `aiohttp`_       Python library for asynchronous HTTP.  Version >=
                  2.0 required.
@@ -41,7 +41,7 @@ the blockchain with::
 
 which can take some time.
 
-While not a requirement for running ElectrumX, it is intended to be
+While not a requirement for running ElectrumXLTFN, it is intended to be
 run with supervisor software such as Daniel Bernstein's
 `daemontools`_, Gerrit Pape's `runit`_ package or :command:`systemd`.
 These make administration of secure unix servers very easy, and I
@@ -50,11 +50,11 @@ with them.  The instructions below and sample run scripts assume
 ``daemontools``; adapting to ``runit`` should be trivial for someone
 used to either.
 
-When building the database from the genesis block, ElectrumX has to
+When building the database from the genesis block, ElectrumXLTFN has to
 flush large quantities of data to disk and its DB.  You will have a
 better experience if the database directory is on an SSD than on an
 HDD.  Currently to around height 611,600 of the Bitcoin blockchain the
-final size of the leveldb database, and other ElectrumX file metadata
+final size of the leveldb database, and other ElectrumXLTFN file metadata
 comes to just over 46.9GB (43.7 GiB).  LevelDB needs a bit more for
 brief periods, and the block chain is only getting longer, so I would
 recommend having at least 70-80GB of free space before starting.
@@ -71,10 +71,10 @@ You will need to install one of:
 
 + `plyvel <https://plyvel.readthedocs.io/en/latest/installation.html>`_ for LevelDB.
 
-  Included as part of a regular pip or ``setup.py`` installation of ElectrumX.
+  Included as part of a regular pip or ``setup.py`` installation of ElectrumXLTFN.
 + `python-rocksdb <https://pypi.python.org/pypi/python-rocksdb>`_ for RocksDB
 
-  ``pip3 install python-rocksdb`` or use the rocksdb extra install option to ElectrumX.
+  ``pip3 install python-rocksdb`` or use the rocksdb extra install option to ElectrumXLTFN.
 + `pyrocksdb <http://pyrocksdb.readthedocs.io/en/v0.4/installation.html>`_ for an unmaintained version that doesn't work with recent releases of RocksDB
 
 Running
@@ -84,8 +84,8 @@ Install the prerequisites above.
 
 Check out the code from Github::
 
-    git clone https://github.com/spesmilo/electrumx.git
-    cd electrumx
+    git clone https://github.com/spesmilo/electrumxltfn.git
+    cd electrumxltfn
 
 You can install with::
 
@@ -106,30 +106,30 @@ You should create a standard user account to run the server under;
 your own is probably adequate unless paranoid.  The paranoid might
 also want to create another user account for the daemontools logging
 process.  The sample scripts and these instructions assume it is all
-under one account which I have called ``electrumx``.
+under one account which I have called ``electrumxltfn``.
 
 Next create a directory where the database will be stored and make it
-writeable by the ``electrumx`` account.  I recommend this directory
+writeable by the ``electrumxltfn`` account.  I recommend this directory
 live on an SSD::
 
     mkdir /path/to/db_directory
-    chown electrumx /path/to/db_directory
+    chown electrumxltfn /path/to/db_directory
 
 
 Process limits
 --------------
 
-You must ensure the ElectrumX process has a large open file limit.
+You must ensure the ElectrumXLTFN process has a large open file limit.
 During sync it should not need more than about 1,024 open files.  When
 serving it will use approximately 256 for LevelDB plus the number of
 incoming connections.  It is not unusual to have 1,000 to 2,000
 connections being served, so I suggest you set your open files limit
 to at least 2,500.
 
-Note that setting the limit in your shell does *NOT* affect ElectrumX
-unless you are invoking ElectrumX directly from your shell.  If you
+Note that setting the limit in your shell does *NOT* affect ElectrumXLTFN
+unless you are invoking ElectrumXLTFN directly from your shell.  If you
 are using :command:`systemd`, you need to set it in the
-:file:`.service` file (see `contrib/systemd/electrumx.service`_).
+:file:`.service` file (see `contrib/systemd/electrumxltfn.service`_).
 
 
 Using daemontools
@@ -139,34 +139,34 @@ Next create a daemontools service directory; this only holds symlinks
 (see daemontools documentation).  The :command:`svscan` program will
 ensure the servers in the directory are running by launching a
 :command:`supervise` supervisor for the server and another for its
-logging process.  You can run :command:`svscan` under the *electrumx*
+logging process.  You can run :command:`svscan` under the *electrumxltfn*
 account if that is the only one involved (server and logger) otherwise
 it will need to run as root so that the user can be switched to
-electrumx.
+electrumxltfn.
 
 Assuming this directory is called :file:`service`, you would do one
 of::
 
     mkdir /service       # If running svscan as root
-    mkdir ~/service      # As electrumx if running svscan as that a/c
+    mkdir ~/service      # As electrumxltfn if running svscan as that a/c
 
 Next create a directory to hold the scripts that the
 :command:`supervise` process spawned by :command:`svscan` will run -
 this directory must be readable by the :command:`svscan` process.
 Suppose this directory is called :file:`scripts`, you might do::
 
-    mkdir -p ~/scripts/electrumx
+    mkdir -p ~/scripts/electrumxltfn
 
-Then copy the all sample scripts from the ElectrumX source tree there::
+Then copy the all sample scripts from the ElectrumXLTFN source tree there::
 
-    cp -R /path/to/repo/electrumx/contrib/daemontools ~/scripts/electrumx
+    cp -R /path/to/repo/electrumxltfn/contrib/daemontools ~/scripts/electrumxltfn
 
 This copies 3 things: the top level server run script, a :file:`log/`
 directory with the logger :command:`run` script, an :file:`env/`
 directory.
 
 You need to configure the :ref:`environment variables <environment>`
-under :file:`env/` to your setup.  ElectrumX server currently takes no
+under :file:`env/` to your setup.  ElectrumXLTFN server currently takes no
 command line arguments; all of its configuration is taken from its
 environment which is set up according to :file:`env/` directory (see
 :manpage:`envdir` man page).  Finally you need to change the
@@ -183,7 +183,7 @@ service directory is still empty::
 svscan is now waiting for services to be added to the directory::
 
     cd ~/service
-    ln -s ~/scripts/electrumx electrumx
+    ln -s ~/scripts/electrumxltfn electrumxltfn
 
 Creating the symlink will kick off the server process almost immediately.
 You can see its logs with::
@@ -195,32 +195,32 @@ Using systemd
 -------------
 
 This repository contains a sample systemd unit file that you can use
-to setup ElectrumX with systemd. Simply copy it to
+to setup ElectrumXLTFN with systemd. Simply copy it to
 :file:`/etc/systemd/system`::
 
-    cp contrib/systemd/electrumx.service /etc/systemd/system/
+    cp contrib/systemd/electrumxltfn.service /etc/systemd/system/
 
 The sample unit file assumes that the repository is located at
-:file:`/home/electrumx/electrumx`. If that differs on your system, you
+:file:`/home/electrumxltfn/electrumxltfn`. If that differs on your system, you
 need to change the unit file accordingly.
 
 You need to set a few :ref:`environment variables <environment>` in
-:file:`/etc/electrumx.conf`.
+:file:`/etc/electrumxltfn.conf`.
 
-Now you can start ElectrumX using :command:`systemctl`::
+Now you can start ElectrumXLTFN using :command:`systemctl`::
 
-    systemctl start electrumx
+    systemctl start electrumxltfn
 
 You can use :command:`journalctl` to check the log output::
 
-    journalctl -u electrumx -f
+    journalctl -u electrumxltfn -f
 
-Once configured you may want to start ElectrumX at boot::
+Once configured you may want to start ElectrumXLTFN at boot::
 
-    systemctl enable electrumx
+    systemctl enable electrumxltfn
 
 .. Warning:: systemd is aggressive in forcibly shutting down
-   processes.  Depending on your hardware, ElectrumX can need several
+   processes.  Depending on your hardware, ElectrumXLTFN can need several
    minutes to flush cached data to disk during initial sync.  You
    should set TimeoutStopSec to *at least* 10 mins in your
    :file:`.service` file.
@@ -231,10 +231,10 @@ Installing on Raspberry Pi 3
 
 To install on the Raspberry Pi 3 you will need to update to the
 ``stretch`` distribution.  See the full procedure in
-`contrib/raspberrypi3/install_electrumx.sh`_.
+`contrib/raspberrypi3/install_electrumxltfn.sh`_.
 
-See also `contrib/raspberrypi3/run_electrumx.sh`_ for an easy way to
-configure and launch electrumx.
+See also `contrib/raspberrypi3/run_electrumxltfn.sh`_ for an easy way to
+configure and launch electrumxltfn.
 
 
 Sync Progress
@@ -242,7 +242,7 @@ Sync Progress
 
 Time taken to index the blockchain depends on your hardware of course.
 As Python is single-threaded most of the time only 1 core is kept
-busy.  ElectrumX uses Python's :mod:`asyncio` to prefill a cache of
+busy.  ElectrumXLTFN uses Python's :mod:`asyncio` to prefill a cache of
 future blocks asynchronously to keep the CPU busy processing the chain
 without pausing.
 
@@ -252,7 +252,7 @@ the daemon on a *separate* machine so the machine doing the indexing
 has its caches and disk I/O tuned to that task only.
 
 The :envvar:`CACHE_MB` environment variable controls the total cache
-size ElectrumX uses; see :ref:`here <CACHE>` for caveats.
+size ElectrumXLTFN uses; see :ref:`here <CACHE>` for caveats.
 
 Here is my experience with the codebase of early 2017 (the current
 codebase is faster), to given heights and rough wall-time.  The period
@@ -279,44 +279,44 @@ machine.  :envvar:`DB_CACHE` set to 1,800.  LevelDB.
 For chains other than bitcoin-mainnet synchronization should be much
 faster.
 
-.. note:: ElectrumX will not serve normal client connections until it
+.. note:: ElectrumXLTFN will not serve normal client connections until it
           has fully synchronized and caught up with your daemon.
           However LocalRPC connections are served at all times.
 
 
-Terminating ElectrumX
+Terminating ElectrumXLTFN
 =====================
 
 The preferred way to terminate the server process is to send it the
 ``stop`` RPC command::
 
-  electrumx_rpc stop
+  electrumxltfn_rpc stop
 
 or alternatively on Unix the ``INT`` or ``TERM`` signals.  For a
 daemontools supervised process this can be done by bringing it down
 like so::
 
-    svc -d ~/service/electrumx
+    svc -d ~/service/electrumxltfn
 
-ElectrumX will note receipt of the signals in the logs, and ensure the
+ElectrumXLTFN will note receipt of the signals in the logs, and ensure the
 block chain index is flushed to disk before terminating.  You should
 be patient as flushing data to disk can take many minutes.
 
-ElectrumX uses the transaction functionality, with fsync enabled, of
+ElectrumXLTFN uses the transaction functionality, with fsync enabled, of
 the databases.  I have written it with the intent that, to the extent
 the atomicity guarantees are upheld by the DB software, the operating
 system, and the hardware, the database should not get corrupted even
-if the ElectrumX process if forcibly killed or there is loss of power.
+if the ElectrumXLTFN process if forcibly killed or there is loss of power.
 The worst case should be having to restart indexing from the most
 recent UTXO flush.
 
 Once the process has terminated, you can start it up again with::
 
-    svc -u ~/service/electrumx
+    svc -u ~/service/electrumxltfn
 
 You can see the status of a running service with::
 
-    svstat ~/service/electrumx
+    svstat ~/service/electrumxltfn
 
 :command:`svscan` can of course handle multiple services
 simultaneously from the same service directory, such as a testnet or
@@ -337,7 +337,7 @@ Here is typical log output on startup::
   INFO:BlockProcessor:using leveldb for DB backend
   INFO:BlockProcessor:created new database
   INFO:BlockProcessor:creating metadata diretcory
-  INFO:BlockProcessor:software version: ElectrumX 0.10.2
+  INFO:BlockProcessor:software version: ElectrumXLTFN 0.10.2
   INFO:BlockProcessor:DB version: 5
   INFO:BlockProcessor:coin: Bitcoin
   INFO:BlockProcessor:network: mainnet
@@ -426,7 +426,7 @@ copy of your certificate and key in case you need to restore them.
 Running on a privileged port
 ============================
 
-You may choose to run electrumx on a different port than 50001
+You may choose to run electrumxltfn on a different port than 50001
 / 50002.  If you choose a privileged port ( < 1024 ) it makes sense to
 make use of a iptables NAT rule.
 
@@ -439,11 +439,11 @@ You can then set the port as follows and advertise the service externally on the
     REPORT_SSL_PORT=110
 
 
-.. _`contrib/systemd/electrumx.service`: https://github.com/spesmilo/electrumx/blob/master/contrib/systemd/electrumx.service
+.. _`contrib/systemd/electrumxltfn.service`: https://github.com/spesmilo/electrumxltfn/blob/master/contrib/systemd/electrumxltfn.service
 .. _`daemontools`: http://cr.yp.to/daemontools.html
 .. _`runit`: http://smarden.org/runit/index.html
 .. _`aiohttp`: https://pypi.python.org/pypi/aiohttp
 .. _`pylru`: https://pypi.python.org/pypi/pylru
 .. _`x11_hash`: https://pypi.python.org/pypi/x11_hash
-.. _`contrib/raspberrypi3/install_electrumx.sh`: https://github.com/spesmilo/electrumx/blob/master/contrib/raspberrypi3/install_electrumx.sh
-.. _`contrib/raspberrypi3/run_electrumx.sh`: https://github.com/spesmilo/electrumx/blob/master/contrib/raspberrypi3/run_electrumx.sh
+.. _`contrib/raspberrypi3/install_electrumxltfn.sh`: https://github.com/spesmilo/electrumxltfn/blob/master/contrib/raspberrypi3/install_electrumxltfn.sh
+.. _`contrib/raspberrypi3/run_electrumxltfn.sh`: https://github.com/spesmilo/electrumxltfn/blob/master/contrib/raspberrypi3/run_electrumxltfn.sh

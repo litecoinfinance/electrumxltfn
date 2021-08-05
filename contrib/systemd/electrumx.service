@@ -1,11 +1,11 @@
 [Unit]
-Description=Electrumx
+Description=ElectrumxLtfn
 After=network.target
 
 [Service]
-EnvironmentFile=/etc/electrumx.conf
-ExecStart=/usr/local/bin/electrumx_server
-User=electrumx
+EnvironmentFile=/etc/electrumxltfn.conf
+ExecStart=/usr/local/bin/electrumxltfn_server
+User=electrumxltfn
 LimitNOFILE=8192
 TimeoutStopSec=30min
 

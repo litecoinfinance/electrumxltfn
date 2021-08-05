@@ -6,8 +6,8 @@ import logging
 import pytest
 
 from aiorpcx import JSONRPCv1, JSONRPCLoose, RPCError, ignore_after, Request
-from electrumx.lib.coins import BitcoinCash, CoinError, Bitzeny, Dash
-from electrumx.server.daemon import Daemon, FakeEstimateFeeDaemon
+from electrumxltfn.lib.coins import BitcoinCash, CoinError, Bitzeny, Dash
+from electrumxltfn.server.daemon import Daemon, FakeEstimateFeeDaemon
 
 
 coin = BitcoinCash

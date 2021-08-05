@@ -1,6 +1,6 @@
 import pytest
 
-from electrumx.lib.script import OpCodes, is_unspendable_legacy, is_unspendable_genesis
+from electrumxltfn.lib.script import OpCodes, is_unspendable_legacy, is_unspendable_genesis
 
 
 @pytest.mark.parametrize("script, iug", (

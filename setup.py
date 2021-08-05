@@ -4,7 +4,7 @@ version = '1.16.0'
 setuptools.setup(
     name='e-x',
     version=version,
-    scripts=['electrumx_server', 'electrumx_rpc', 'electrumx_compact_history'],
+    scripts=['electrumxltfn_server', 'electrumxltfn_rpc', 'electrumxltfn_compact_history'],
     python_requires='>=3.7',
     install_requires=['aiorpcX[ws]>=0.18.5,<0.19', 'attrs',
                       'plyvel', 'pylru', 'aiohttp>=3.3,<4'],
@@ -24,14 +24,14 @@ setuptools.setup(
         'bell-yespower': ['bell-yespower'],
         'cpupower': ['cpupower'],
     },
-    packages=setuptools.find_packages(include=('electrumx*',)),
-    description='ElectrumX Server',
+    packages=setuptools.find_packages(include=('electrumxltfn*',)),
+    description='ElectrumXLTFN Server',
     author='Electrum developers',
     author_email='electrumdev@gmail.com',
     license='MIT Licence',
-    url='https://github.com/litecoinfinance/electrumx',
+    url='https://github.com/litecoinfinance/electrumxltfn',
     long_description='Server implementation for the Electrum protocol',
-    download_url=('https://github.com/litecoinfinance/electrumX/archive/'
+    download_url=('https://github.com/litecoinfinance/electrumxltfn/archive/'
                   f'{version}.tar.gz'),
     classifiers=[
         'Development Status :: 5 - Production/Stable',

@@ -15,11 +15,11 @@
 import os
 import sys
 sys.path.insert(0, os.path.abspath('..'))
-VERSION="ElectrumX 1.16.0"
+VERSION="ElectrumXLTFN 1.16.0"
 
 # -- Project information -----------------------------------------------------
 
-project = 'ElectrumX'
+project = 'ElectrumXLTFN'
 copyright = '2016-2020, various'
 author = 'Electrum developers'
 
@@ -83,7 +83,7 @@ html_theme = 'alabaster'
 html_theme_options = {
     'description': 'Lightweight Electrum Server in Python',
     'github_user': 'spesmilo',
-    'github_repo': 'electrumx',
+    'github_repo': 'electrumxltfn',
     'github_button': True,
     'github_type': 'star',
     'github_banner': True,
@@ -111,7 +111,7 @@ html_sidebars = {
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'ElectrumXdoc'
+htmlhelp_basename = 'ElectrumXLTFNdoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -138,7 +138,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'ElectrumX.tex', 'ElectrumX Documentation',
+    (master_doc, 'ElectrumXLTFN.tex', 'ElectrumXLTFN Documentation',
      'Neil Booth', 'manual'),
 ]
 
@@ -148,7 +148,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'electrumx', 'ElectrumX Documentation',
+    (master_doc, 'electrumxltfn', 'ElectrumXLTFN Documentation',
      [author], 1)
 ]
 
@@ -159,7 +159,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'ElectrumX', 'ElectrumX Documentation',
-     author, 'ElectrumX', 'One line description of project.',
+    (master_doc, 'ElectrumXLTFN', 'ElectrumXLTFN Documentation',
+     author, 'ElectrumXLTFN', 'One line description of project.',
      'Miscellaneous'),
 ]

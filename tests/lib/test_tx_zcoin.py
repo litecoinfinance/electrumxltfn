@@ -1,4 +1,4 @@
-import electrumx.lib.tx as tx_lib
+import electrumxltfn.lib.tx as tx_lib
 
 tests = [
     "0100000001000000000000000000000000000000000000000000000000000000000000"

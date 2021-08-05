@@ -1,5 +1,5 @@
 # Copyright (c) 2016-2017, Neil Booth
-# Copyright (c) 2017, the ElectrumX authors
+# Copyright (c) 2017, the ElectrumXLTFN authors
 #
 # All rights reserved.
 #
@@ -37,19 +37,19 @@ from functools import partial
 from hashlib import sha256
 from typing import Sequence, Tuple
 
-import electrumx.lib.util as util
-from electrumx.lib.hash import Base58, double_sha256, hash_to_hex_str
-from electrumx.lib.hash import HASHX_LEN, hex_str_to_hash
-from electrumx.lib.script import (_match_ops, Script, ScriptError,
+import electrumxltfn.lib.util as util
+from electrumxltfn.lib.hash import Base58, double_sha256, hash_to_hex_str
+from electrumxltfn.lib.hash import HASHX_LEN, hex_str_to_hash
+from electrumxltfn.lib.script import (_match_ops, Script, ScriptError,
                                   ScriptPubKey, OpCodes)
-import electrumx.lib.tx as lib_tx
-from electrumx.lib.tx import Tx
-import electrumx.lib.tx_dash as lib_tx_dash
-import electrumx.lib.tx_axe as lib_tx_axe
-import electrumx.server.block_processor as block_proc
-import electrumx.server.daemon as daemon
-from electrumx.server.session import (ElectrumX, DashElectrumX,
-                                      SmartCashElectrumX, AuxPoWElectrumX)
+import electrumxltfn.lib.tx as lib_tx
+from electrumxltfn.lib.tx import Tx
+import electrumxltfn.lib.tx_dash as lib_tx_dash
+import electrumxltfn.lib.tx_axe as lib_tx_axe
+import electrumxltfn.server.block_processor as block_proc
+import electrumxltfn.server.daemon as daemon
+from electrumxltfn.server.session import (ElectrumXLTFN, DashElectrumXLTFN,
+                                      SmartCashElectrumXLTFN, AuxPoWElectrumXLTFN)
 
 
 @dataclass
@@ -74,7 +74,7 @@ class Coin:
     CHUNK_SIZE = 2016
     BASIC_HEADER_SIZE = 80
     STATIC_BLOCK_HEADERS = True
-    SESSIONCLS = ElectrumX
+    SESSIONCLS = ElectrumXLTFN
     DEFAULT_MAX_SEND = 1000000
     DESERIALIZER = lib_tx.Deserializer
     DAEMON = daemon.Daemon
@@ -282,7 +282,7 @@ class Coin:
 class AuxPowMixin:
     STATIC_BLOCK_HEADERS = False
     DESERIALIZER = lib_tx.DeserializerAuxPow
-    SESSIONCLS = AuxPoWElectrumX
+    SESSIONCLS = AuxPoWElectrumXLTFN
     TRUNCATED_HEADER_SIZE = 80
     # AuxPoW headers are significantly larger, so the DEFAULT_MAX_SEND from
     # Bitcoin is insufficient.  In Namecoin mainnet, 5 MB wasn't enough to
@@ -485,7 +485,7 @@ class NameIndexMixin(NameMixin):
     def build_name_index_script(cls, name):
         """Returns the script by which names are indexed"""
 
-        from electrumx.lib.script import Script
+        from electrumxltfn.lib.script import Script
 
         res = bytearray()
         res.append(cls.OP_NAME_UPDATE)
@@ -582,7 +582,7 @@ class BitcoinSV(BitcoinMixin, Coin):
     TX_COUNT_HEIGHT = 557037
     TX_PER_BLOCK = 400
     PEERS = [
-        'electrumx.bitcoinsv.io s',
+        'electrumxltfn.bitcoinsv.io s',
         'satoshi.vision.cash s',
         'sv.usebsv.com s t',
         'sv.jochen-hoenicke.de s t',
@@ -691,8 +691,8 @@ class BitcoinGold(EquihashMixin, BitcoinMixin, Coin):
     REORG_LIMIT = 1000
     RPC_PORT = 8332
     PEERS = [
-        'electrumx-eu.bitcoingold.org s50002 t50001',
-        'electrumx-us.bitcoingold.org s50002 t50001'
+        'electrumxltfn-eu.bitcoingold.org s50002 t50001',
+        'electrumxltfn-us.bitcoingold.org s50002 t50001'
     ]
 
     @classmethod
@@ -1157,7 +1157,7 @@ class Unitus(Coin):
     RPC_PORT = 50604
     REORG_LIMIT = 2000
     PEERS = [
-        'electrumx.unituscurrency.com s t',
+        'electrumxltfn.unituscurrency.com s t',
     ]
 
 
@@ -1283,7 +1283,7 @@ class Dash(Coin):
         'electrum.dash.siampm.com s t',
         'wl4sfwq2hwxnodof.onion s t',
     ]
-    SESSIONCLS = DashElectrumX
+    SESSIONCLS = DashElectrumXLTFN
     DAEMON = daemon.DashDaemon
     DESERIALIZER = lib_tx_dash.DeserializerDash
 
@@ -1761,7 +1761,7 @@ class Trezarcoin(Coin):
     RPC_PORT = 17299
     REORG_LIMIT = 2000
     PEERS = [
-        'electrumx1.trezarcoin.com s t',
+        'electrumxltfn1.trezarcoin.com s t',
     ]
 
     @classmethod
@@ -1859,10 +1859,10 @@ class Monacoin(Coin):
     REORG_LIMIT = 1000
     BLACKLIST_URL = 'https://electrum-mona.org/blacklist.json'
     PEERS = [
-        'electrumx.tamami-foundation.org s t',
-        'electrumx3.monacoin.nl s t',
-        'electrumx1.monacoin.ninja s t',
-        'electrumx2.movsign.info s t',
+        'electrumxltfn.tamami-foundation.org s t',
+        'electrumxltfn3.monacoin.nl s t',
+        'electrumxltfn1.monacoin.ninja s t',
+        'electrumxltfn2.movsign.info s t',
         'electrum-mona.bitbank.cc s t',
         'ri7rzlmdaf4eqbza.onion s t',
     ]
@@ -1885,8 +1885,8 @@ class MonacoinTestnet(Monacoin):
     REORG_LIMIT = 1000
     PEER_DEFAULT_PORTS = {'t': '51001', 's': '51002'}
     PEERS = [
-        'electrumx1.testnet.monacoin.ninja s t',
-        'electrumx1.testnet.monacoin.nl s t',
+        'electrumxltfn1.testnet.monacoin.ninja s t',
+        'electrumxltfn1.testnet.monacoin.nl s t',
     ]
 
 
@@ -2119,9 +2119,9 @@ class Feathercoin(Coin):
     RPC_PORT = 9337
     REORG_LIMIT = 2000
     PEERS = [
-        'electrumx-gb-1.feathercoin.network s t',
-        'electrumx-gb-2.feathercoin.network s t',
-        'electrumx-de-1.feathercoin.network s t',
+        'electrumxltfn-gb-1.feathercoin.network s t',
+        'electrumxltfn-gb-2.feathercoin.network s t',
+        'electrumxltfn-de-1.feathercoin.network s t',
     ]
 
 
@@ -2143,7 +2143,7 @@ class UFO(Coin):
     RPC_PORT = 9888
     REORG_LIMIT = 2000
     PEERS = [
-        'electrumx1.ufobject.com s t',
+        'electrumxltfn1.ufobject.com s t',
     ]
 
 
@@ -2345,7 +2345,7 @@ class Axe(Dash):
     WIF_BYTE = bytes.fromhex("cc")
     GENESIS_HASH = ('00000c33631ca6f2f61368991ce2dc03'
                     '306b5bb50bf7cede5cfbba6db38e52e6')
-    SESSIONCLS = DashElectrumX
+    SESSIONCLS = DashElectrumXLTFN
     DAEMON = daemon.DashDaemon
     DESERIALIZER = lib_tx_axe.DeserializerAxe
     TX_COUNT = 18405
@@ -2454,7 +2454,7 @@ class Odin(Coin):
     HDR_V4_HEIGHT = 143447
     HDR_V4_START_OFFSET = HDR_V4_HEIGHT * BASIC_HEADER_SIZE
 
-    SESSIONCLS = DashElectrumX
+    SESSIONCLS = DashElectrumXLTFN
     DAEMON = daemon.DashDaemon
     DESERIALIZER = lib_tx.DeserializerSegWit
 
@@ -2496,7 +2496,7 @@ class Pac(Coin):
         'electrum.paccoin.io s t',
         'electro-pac.paccoin.io s t'
     ]
-    SESSIONCLS = DashElectrumX
+    SESSIONCLS = DashElectrumXLTFN
     DAEMON = daemon.DashDaemon
     ESTIMATE_FEE = 0.00001
     RELAY_FEE = 0.00001
@@ -2545,7 +2545,7 @@ class Zcoin(Coin):
     MTP_HEADER_DATA_START = Coin.BASIC_HEADER_SIZE + MTP_HEADER_EXTRA_SIZE
     MTP_HEADER_DATA_END = MTP_HEADER_DATA_START + MTP_HEADER_DATA_SIZE
     STATIC_BLOCK_HEADERS = False
-    SESSIONCLS = DashElectrumX
+    SESSIONCLS = DashElectrumXLTFN
     DAEMON = daemon.ZcoinMtpDaemon
     DESERIALIZER = lib_tx.DeserializerZcoin
     PEERS = [
@@ -2554,7 +2554,7 @@ class Zcoin(Coin):
 
     @classmethod
     def is_mtp(cls, header):
-        from electrumx.lib.util import unpack_le_uint32_from, hex_to_bytes
+        from electrumxltfn.lib.util import unpack_le_uint32_from, hex_to_bytes
         if isinstance(header, str):
             nVersion, = unpack_le_uint32_from(hex_to_bytes(header[0:4*2]))
         elif isinstance(header, bytes):
@@ -2610,7 +2610,7 @@ class Polis(Coin):
     PEERS = [
         'electrum.polispay.com'
     ]
-    SESSIONCLS = DashElectrumX
+    SESSIONCLS = DashElectrumXLTFN
     DAEMON = daemon.DashDaemon
 
     @classmethod
@@ -2638,7 +2638,7 @@ class MNPCoin(Coin):
     PEERS = [
         'electrum.polispay.com'
     ]
-    SESSIONCLS = DashElectrumX
+    SESSIONCLS = DashElectrumXLTFN
     DAEMON = daemon.DashDaemon
 
     @classmethod
@@ -2670,7 +2670,7 @@ class ColossusXT(Coin):
     PEERS = [
         'electrum.polispay.com'
     ]
-    SESSIONCLS = DashElectrumX
+    SESSIONCLS = DashElectrumXLTFN
     DAEMON = daemon.DashDaemon
 
     @classmethod
@@ -2708,7 +2708,7 @@ class Minexcoin(EquihashMixin, Coin):
     RPC_PORT = 8022
     CHUNK_SIZE = 960
     PEERS = [
-        'electrumx.xpresit.net s t',
+        'electrumxltfn.xpresit.net s t',
         'elex01-ams.turinex.eu s t',
         'eu.minexpool.nl s t'
     ]
@@ -2860,7 +2860,7 @@ class Bitg(Coin):
     TX_PER_BLOCK = 1
     RPC_PORT = 9332
     REORG_LIMIT = 1000
-    SESSIONCLS = DashElectrumX
+    SESSIONCLS = DashElectrumXLTFN
 
     @classmethod
     def header_hash(cls, header):
@@ -2953,7 +2953,7 @@ class SmartCash(Coin):
                            hash_fn=lib_tx.DeserializerSmartCash.keccak)
     HEADER_HASH = lib_tx.DeserializerSmartCash.keccak
     DAEMON = daemon.SmartCashDaemon
-    SESSIONCLS = SmartCashElectrumX
+    SESSIONCLS = SmartCashElectrumXLTFN
 
     @classmethod
     def header_hash(cls, header):
@@ -3237,7 +3237,7 @@ class Bolivarcoin(Coin):
     RPC_PORT = 3563
     REORG_LIMIT = 800
     PEERS = []
-    SESSIONCLS = DashElectrumX
+    SESSIONCLS = DashElectrumXLTFN
     DAEMON = daemon.DashDaemon
 
     @classmethod
@@ -3262,7 +3262,7 @@ class Onixcoin(Coin):
     RPC_PORT = 41019
     REORG_LIMIT = 800
     PEERS = []
-    SESSIONCLS = DashElectrumX
+    SESSIONCLS = DashElectrumXLTFN
     DAEMON = daemon.DashDaemon
 
     @classmethod
@@ -3343,7 +3343,7 @@ class Bellcoin(Coin):
     RPC_PORT = 25252
     REORG_LIMIT = 1000
     PEERS = [
-        'bell.electrumx.japanesecoin-pool.work s t',
+        'bell.electrumxltfn.japanesecoin-pool.work s t',
         'bell.streetcrypto7.com s t',
     ]
 
@@ -3369,7 +3369,7 @@ class CPUchain(Coin):
     RPC_PORT = 19707
     REORG_LIMIT = 1000
     PEERS = [
-        'electrumx.cpuchain.org s t',
+        'electrumxltfn.cpuchain.org s t',
     ]
 
     @classmethod
@@ -3510,11 +3510,11 @@ class ElectraProtocol(Coin):
     REORG_LIMIT = 1080
     DESERIALIZER = lib_tx.DeserializerSegWit
     PEERS = [
-        'electrumx1.electraprotocol.eu s t',
-        'electrumx2.electraprotocol.eu s t',
-        'electrumx3.electraprotocol.eu s t',
-        'electrumx4.electraprotocol.eu s t',
-        'electrumx5.electraprotocol.eu s t',
+        'electrumxltfn1.electraprotocol.eu s t',
+        'electrumxltfn2.electraprotocol.eu s t',
+        'electrumxltfn3.electraprotocol.eu s t',
+        'electrumxltfn4.electraprotocol.eu s t',
+        'electrumxltfn5.electraprotocol.eu s t',
     ]
 
     @classmethod
@@ -3599,7 +3599,7 @@ class Primecoin(PrimeChainPowMixin, Coin):
     RPC_PORT = 9912
     REORG_LIMIT = 5000
     PEERS = [
-        'electrumx.primecoin.org s t',
+        'electrumxltfn.primecoin.org s t',
     ]
 
 
@@ -3614,7 +3614,7 @@ class PrimecoinTestnet(Primecoin):
                     'fbd703bc27cfc468faa1cdd889d0efa0')
     RPC_PORT = 9914
     PEERS = [
-        'electrumx.testnet.primecoin.org t',
+        'electrumxltfn.testnet.primecoin.org t',
     ]
 
 

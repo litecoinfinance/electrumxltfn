@@ -1,4 +1,4 @@
-# Copyright (c) 2016-2017, the ElectrumX authors
+# Copyright (c) 2016-2017, the ElectrumXLTFN authors
 #
 # All rights reserved.
 #
@@ -11,7 +11,7 @@ import os
 from functools import partial
 from typing import Type
 
-import electrumx.lib.util as util
+import electrumxltfn.lib.util as util
 
 
 def db_class(name) -> Type['Storage']:
