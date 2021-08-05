@@ -2,7 +2,7 @@ import setuptools
 version = '1.16.0'
 
 setuptools.setup(
-    name='e-x',
+    name='e-x-l',
     version=version,
     scripts=['electrumxltfn_server', 'electrumxltfn_rpc', 'electrumxltfn_compact_history'],
     python_requires='>=3.7',
