@@ -29,9 +29,9 @@ setuptools.setup(
     author='ElectrumLtfn developers',
     author_email='electrumdev@gmail.com',
     license='MIT Licence',
-    url='https://github.com/litecoinfinance/electrumxltfn',
+    url='https://github.com/mraksoll4/electrumxltfn',
     long_description='Server implementation for the ElectrumLtfn protocol',
-    download_url=('https://github.com/litecoinfinance/electrumxltfn/archive/'
+    download_url=('https://github.com/mraksoll4/electrumxltfn/archive/'
                   f'{version}.tar.gz'),
     classifiers=[
         'Development Status :: 5 - Production/Stable',
