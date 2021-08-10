@@ -1,7 +1,7 @@
-.. image:: https://travis-ci.org/spesmilo/electrumxltfn.svg?branch=master
-    :target: https://travis-ci.org/spesmilo/electrumxltfn
-.. image:: https://coveralls.io/repos/github/spesmilo/electrumxltfn/badge.svg
-    :target: https://coveralls.io/github/spesmilo/electrumxltfn
+.. image:: https://travis-ci.org/spesmilo/electrumx.svg?branch=master
+    :target: https://travis-ci.org/spesmilo/electrumx
+.. image:: https://coveralls.io/repos/github/spesmilo/electrumx/badge.svg
+    :target: https://coveralls.io/github/spesmilo/electrumx
 
 ===============================================
 ElectrumXLTFN - Reimplementation of electrum-server
@@ -11,7 +11,7 @@ ElectrumXLTFN - Reimplementation of electrum-server
   :Language: Python (>= 3.7)
   :Original Author: Neil Booth
 
-This project is a fork of `kyuupichan/electrumxltfn <https://github.com/kyuupichan/electrumxltfn>`_.
+This project is a fork of `kyuupichan/electrumx <https://github.com/kyuupichan/electrumx>`_.
 The original author dropped support for Bitcoin, which we intend to keep.
 
 ElectrumXLTFN allows users to run their own ElectrumLtfn server. It connects to your
@@ -24,5 +24,5 @@ Documentation
 =============
 Fast setup `Setup <https://github.com/mraksoll4/electrumxltfn/blob/master/docs/HowToSetup.rst>`_.
 
-See `readthedocs <https://electrumxltfn-spesmilo.readthedocs.io/>`_.
+See `readthedocs <https://electrumx-spesmilo.readthedocs.io/>`_.
 
