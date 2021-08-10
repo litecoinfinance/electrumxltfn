@@ -22,7 +22,7 @@ ElectrumLtfn server network runs ElectrumXLTFN.
 
 Documentation
 =============
-Fast setup `Setup <https://github.com/mraksoll4/electrumxltfn/blob/master/docs/HowToSetup.rst>`_.
+Fast setup `Setup <https://github.com/litecoinfinance/electrumxltfn/blob/master/docs/HowToSetup.rst>`_.
 
 See `readthedocs <https://electrumx-spesmilo.readthedocs.io/>`_.
 
